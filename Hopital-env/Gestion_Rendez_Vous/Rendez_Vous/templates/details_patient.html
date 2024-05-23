@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Détail du Patient</title>
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+</head>
+<body>
+    <div class="patient-detail-container">
+        <h1>Détails du Patient</h1>
+        <div class="patient-info">
+            <p><strong>Nom:</strong> {{ patient.prenom }} {{ patient.nom }}</p>
+            <p><strong>ID:</strong> {{ patient.id }}</p>
+            <p><strong>Age:</strong> {{ patient.age}}</p>
+            <p><strong>Numéro de téléphone:</strong> {{ patient.numtel }}</p>
+            <p><strong>motif:</strong> {{ patient.motif }}</p>
+        </div>
+    </div>
+</body>
+</html>

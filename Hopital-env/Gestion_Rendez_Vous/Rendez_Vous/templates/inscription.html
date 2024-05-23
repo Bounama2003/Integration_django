@@ -1,0 +1,30 @@
+{% extends 'base.html'%}
+
+
+{%block content %}
+{%load static%}
+<link rel="stylesheet" href="{% static 'CSS/style.css'%}">
+
+<h1>Inscrivez-vous</h1>
+{% for message in messages%}
+    <p style="color: green;">{{message}}</p>
+{% endfor%}
+    {% if form.errors%}
+            <div class="error-messages">
+                {% for field in form %}
+                    {% if field.errors%}
+                        <div class="error-message">{{field.label}}:{{field.errors|striptags}}</div>
+                    {% endif%}
+                {% endfor%}
+
+            </div>
+        {%endif%}
+        
+    <form action="{% url 'inscription'%}" method="post" class="form">
+        
+        {%csrf_token%}
+        {{form.as_p}}
+        <input type="submit" value="Envoyer">
+    </form>
+
+{% endblock %}

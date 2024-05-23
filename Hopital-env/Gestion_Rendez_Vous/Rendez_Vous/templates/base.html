@@ -1,0 +1,47 @@
+{%load static%}
+<link rel="stylesheet" href="{%static 'bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/css/bootstrap.min.css' %}">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar scroll</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'index'%}">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'liste_patient'%}">Patients</a>
+          </li>
+          <li class="nav-item d">
+            <a class="nav-link me-3" href="{%url 'rendezvous'%}">
+              Rendez-vous
+            </a>
+          </li>
+        <li class="nav-item active me-3">
+            <a class="btn btn-success" href="{% url 'inscription'%}">Créer un compte</a>
+        </li>
+        <li class="nav-item active me-3">
+            <a class="btn btn-primary text-white" href="{% url 'connexion'%}">Connexion</a>
+        </li>
+        <li class="nav-item active">
+            <a class="btn btn-danger text-white" href="{% url 'deconnexion' %}">Déconnexion</a>
+        </li>
+          
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Rechercher un nom de patient" aria-label="Search" name="item-submit">
+          <button class="btn btn-outline-success" type="submit"><svg width="15" height="15" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#555555" d="M1216 832q0-185-131.5-316.5t-316.5-131.5-316.5 131.5-131.5 316.5 131.5 316.5 316.5 131.5 316.5-131.5 131.5-316.5zm512 832q0 52-38 90t-90 38q-54 0-90-38l-343-342q-179 124-399 124-143 0-273.5-55.5t-225-150-150-225-55.5-273.5 55.5-273.5 150-225 225-150 273.5-55.5 273.5 55.5 225 150 150 225 55.5 273.5q0 220-124 399l343 343q37 37 37 90z"/>
+          </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+{%block content %}
+
+{%endblock%}
+
+<script src="{%static 'bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/js/bootstrap.min.js'%}"></script>

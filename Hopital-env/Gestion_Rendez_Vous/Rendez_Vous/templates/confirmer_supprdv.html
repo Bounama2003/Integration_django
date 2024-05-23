@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #dc3545;
+    text-align: center;
+}
+
+p {
+    font-size: 18px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+input[type="submit"] {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 5px 5px 5px;
+    width: 20%;
+    height: 30%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 20px;  /* Ajoutez cette ligne pour espacer le bouton du lien */
+}
+
+input[type="submit"]:hover {
+    background-color: #c82333;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #111d77;
+    
+    
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+</style>
+<body>
+    <div class="container">
+        <h1>Confirmation de suppréssion</h1>
+        <p>Etes vous sûr de vouloir supprimer le rendez-vous de {{rendezvous.patient}}</p>
+        <form action="" method="post">
+            {%csrf_token%}
+            {{form.as_p}}
+            <input type="submit" value="OK">
+            <a href="{% url 'rendezvous' %}">Annuler</a>
+        </form>
+
+    </div>
+    
+    
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des patients</title>
+</head>
+{% block content %}
+<body>
+    {%csrf_token%}
+    <h1>Liste des patients: <button><a class="col" href="{% url 'ajouter_patient' %}"><svg width="40" height="40" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#70bf2b" d="M1600 796v192q0 40-28 68t-68 28h-416v416q0 40-28 68t-68 28h-192q-40 0-68-28t-28-68v-416h-416q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h416v-416q0-40 28-68t68-28h192q40 0 68 28t28 68v416h416q40 0 68 28t28 68z"/>
+      </svg>
+      </a></button></h1>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #85C1E9;
+        }
+
+        th {
+            background-color: #85C1E9;
+            color:#fff;
+        }
+
+       
+        button {
+            background-color: #fff;
+            color: #fff;
+            text-decoration: none;
+        }
+        .col {
+            color:#fff;
+            text-decoration: none;
+        }
+        .paf {
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+    
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>PRENOM</th>
+                <th>NOM</th>
+                <th>AGE</th>
+                <th>TELEPHONE</th>
+                <th>MOTIFS</th>
+                <th>ACTIONS</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {%for patient in patients%}
+                <tr>
+                    <td>{{patient.id}}</td>
+                    <td>{{patient.prenom}}</td>
+                    <td>{{patient.nom}}</td>
+                    <td>{{patient.age}}</td>
+                    <td>{{patient.numtel}}</td>
+                    <td>{{patient.motif}}</td>
+                    <td>
+                        <button><a class="paf" href="{% url 'modifier_patient' patient.id %}"><svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="#efb80b" d="M491 1536l91-91-235-235-91 91v107h128v128h107zm523-928q0-22-22-22-10 0-17 7l-542 542q-7 7-7 17 0 22 22 22 10 0 17-7l542-542q7-7 7-17zm-54-192l416 416-832 832h-416v-416zm683 96q0 53-37 90l-166 166-416-416 166-165q36-38 90-38 53 0 91 38l235 234q37 39 37 91z"/>
+                          </svg>
+                          </a></button>
+                        <button><a class="paf" href="{% url 'supprimer_patient' patient.id %}"><svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="#dd4646" d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z"/>
+                          </svg>
+                          </a></button>
+                        <button><a class="paf" href="{% url 'details_patients' patient.id %}"><svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="#2b70bf" d="M1664 960q-152-236-381-353 61 104 61 225 0 185-131.5 316.5t-316.5 131.5-316.5-131.5-131.5-316.5q0-121 61-225-229 117-381 353 133 205 333.5 326.5t434.5 121.5 434.5-121.5 333.5-326.5zm-720-384q0-20-14-34t-34-14q-125 0-214.5 89.5t-89.5 214.5q0 20 14 34t34 14 34-14 14-34q0-86 61-147t147-61q20 0 34-14t14-34zm848 384q0 34-20 69-140 230-376.5 368.5t-499.5 138.5-499.5-139-376.5-368q-20-35-20-69t20-69q140-229 376.5-368t499.5-139 499.5 139 376.5 368q20 35 20 69z"/>
+                          </svg>
+                          </a></button>
+                        
+                    </td>
+                </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    
+</body>
+</html>
+{% endblock%}
