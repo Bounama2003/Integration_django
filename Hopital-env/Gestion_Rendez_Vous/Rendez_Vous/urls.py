@@ -1,4 +1,6 @@
-from django.urls import path
+from django.urls import path, include
+#from django.contrib.auth import views as auth_views
+
 from Rendez_Vous.views import liste_rendezvous,liste_patient,enregistrer_rendez_vous,modifier_rdv,supprimer_rdv,details_rdv,ajouter_patient, supprimer_patient, modifier_patient,details_patients, index,inscription, connexion,deconnexion
 from django.contrib.auth import views
 
@@ -18,10 +20,13 @@ urlpatterns=[
     path('inscription/', inscription, name='inscription'),
     path('accounts/login/', connexion, name='connexion'),
     path('deconnexion/', deconnexion, name='deconnexion'),
-   # path('reset_password/',views.PasswordResetView.as_view(),name='reset_password'),
-   # path('reset_password_send/',views.PasswordResetDoneView.as_view(),name='reset_password_send'),
-   # path('reset_password_confirm/',views.PasswordResetConfirmView.as_view(),name='reset_password_confirm'),
-   # path('reset_password_complete/',views.PasswordResetCompleteView.as_view(),name='reset_password_complete')
+    path('reset_password/',views.PasswordResetView.as_view(template_name='password_reset.html'),name='reset_password'),
+    path('reset_password_send/',views.PasswordResetDoneView.as_view(template_name='password_reset_send.html'),name='password_reset_done'),
+    path('reset/<uidb64>/<token>/',views.PasswordResetConfirmView.as_view(template_name='password_reset_form.html'),name='password_reset_confirm'),
+    path('reset_password_complete/',views.PasswordResetCompleteView.as_view(template_name='password_confirm.html'),name='password_reset_complete'),
+    
+    #path('accounts/',include('django.contrib.auth.urls'))
+    #path('enregistrer_rdv_patient/<int:id>', enregistrer_rdv_patient, name='enregistrer_rdv_patient')
 
 
 ]

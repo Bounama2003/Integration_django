@@ -8,10 +8,10 @@
     <title>Liste des rendez-vous</title>
 </head>
 <body>
-    <h1>Liste des rendez-vous: <button><a class="boutton" href="{% url 'enregistrer_rendez_vous' %}"><svg width="40" height="40" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+    <h1 class="text-center">Liste des rendez-vous:<button><a class="boutton" href="{% url 'enregistrer_rendez_vous' %}"><svg width="40" height="40" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
         <path fill="#70bf2b" d="M1600 796v192q0 40-28 68t-68 28h-416v416q0 40-28 68t-68 28h-192q-40 0-68-28t-28-68v-416h-416q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h416v-416q0-40 28-68t68-28h192q40 0 68 28t28 68v416h416q40 0 68 28t28 68z"/>
       </svg>
-      </a></button></h1>
+      </a></button> </h1>
     
     <style>
         table {
@@ -21,14 +21,14 @@
         }
 
         th, td {
-            border: 1px solid #85C1E9;
+            border: 1px solid #333;
             border-radius: 3px;
             text-align: left;
             padding: 8px;
         }
 
         th {
-            background-color: #85C1E9;
+            background-color: #050b0f;
             color: #fff;
         }
 
@@ -55,7 +55,8 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Patients</th>
+                <th>Nom</th>
+                <th>Prenom</th>
                 <th>Date</th>
                 <th>Heure</th>
                 <th>Actions</th>
@@ -66,7 +67,8 @@
             {% for rendezvous in rendez_vous %}
                 <tr>
                     <td>{{rendezvous.id}}</td>
-                    <td>{{rendezvous.patient}}</td>
+                    <td>{{rendezvous.patient.nom}}</td>
+                    <td>{{rendezvous.patient.prenom}}</td>
                     <td>{{rendezvous.date}}</td>
                     <td>{{rendezvous.heure}}</td>
                     <td>

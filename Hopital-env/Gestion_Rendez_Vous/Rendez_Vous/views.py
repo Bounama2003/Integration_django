@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from . models import Patient, Rendez_vous
 from . forms import PatientForms,RendezvousForm, UserForm
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+
 
 @login_required
 def liste_rendezvous(request):
@@ -18,6 +19,8 @@ def liste_patient(request):
     if item_submit != '' and item_submit is not None:
         
         patients=Patient.objects.filter(nom__icontains=item_submit)
+    
+        
     return render(request, 'liste_patient.html', {'patients':patients})
 
 @login_required
@@ -31,6 +34,20 @@ def enregistrer_rendez_vous(request):
     else:
         form=RendezvousForm()
     return render(request, 'rendezvousform.html', {'form':form})
+
+
+"""def enregistrer_rdv_patient(request, id):
+    patient=Patient.objects.get(id=id)
+    if request.method == 'POST':
+        form = RendezvousForm(request.POST)
+        if form.is_valid():
+            rendezvous = form.save(commit=False)
+            rendezvous.patient = patient
+            rendezvous.save()
+            return redirect('rendezvous', id=patient.id)
+    else:
+        form=RendezvousForm(initial={'patient': patient})
+    return render(request, 'addrdvparID.html',{'form':form, 'patient':patient})"""
 
 @login_required
 def modifier_rdv(request, id):
@@ -56,6 +73,7 @@ def supprimer_rdv(request, id):
 def details_rdv(request, id):
     rendezvous=Rendez_vous.objects.get(id=id)
     return render(request, 'details_rdv.html', {'rendezvous':rendezvous})
+
 @login_required
 def ajouter_patient(request):
     fors=PatientForms()
@@ -64,6 +82,7 @@ def ajouter_patient(request):
         fors.save()
         return redirect('liste_patient')
     return render(request, 'ajouter_patient.html', {'fors': fors})
+
 @login_required
 def supprimer_patient(request, id):
     patient=Patient.objects.get(id=id)
@@ -126,7 +145,7 @@ def connexion(request):
 def deconnexion(request):
     logout(request)
     return redirect('connexion')
-    
+
 
 
 

@@ -1,30 +1,69 @@
+<!DOCTYPE html>
 {% extends 'base.html'%}
 
+{%block content%}
 
-{%block content %}
-{%load static%}
-<link rel="stylesheet" href="{% static 'CSS/style.css'%}">
 
-<h1>Inscrivez-vous</h1>
-{% for message in messages%}
-    <p style="color: green;">{{message}}</p>
-{% endfor%}
-    {% if form.errors%}
-            <div class="error-messages">
-                {% for field in form %}
-                    {% if field.errors%}
-                        <div class="error-message">{{field.label}}:{{field.errors|striptags}}</div>
-                    {% endif%}
-                {% endfor%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+{% load widget_tweaks %}
 
+<body>
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="mb-4 text-center">Créer un compte</h2>
+                <form method="post" action="{% url 'inscription' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="{{ form.username.id_for_label }}" class="form-label">Nom d'utilisateur</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            {{ form.username|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.last_name.id_for_label }}" class="form-label">Nom</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            {{ form.last_name|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.email.id_for_label }}" class="form-label">Adresse Email</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            {{ form.email|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.password1.id_for_label }}" class="form-label">Mot de passe</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            {{ form.password1|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.password2.id_for_label }}" class="form-label">Confirmez le mot de passe</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            {{ form.password2|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Créer un compte</button>
+                </form>
             </div>
-        {%endif%}
-        
-    <form action="{% url 'inscription'%}" method="post" class="form">
-        
-        {%csrf_token%}
-        {{form.as_p}}
-        <input type="submit" value="Envoyer">
-    </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 
-{% endblock %}
+</html>
+
+{%endblock%}

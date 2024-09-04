@@ -8,6 +8,15 @@ class Patient(models.Model):
     def __str__(self):
         return f" {self.nom} {self.prenom}"
     
+
+"""class Medecin(models.Model):
+    nom=models.CharField(max_length=100)
+    prenom=models.CharField(max_length=100)
+    specialite=models.CharField(max_length=100)"""
+    
+
+
+    
 class Rendez_vous(models.Model):
     patient=models.ForeignKey(Patient, on_delete=models.CASCADE)
     date=models.DateField()
@@ -15,4 +24,8 @@ class Rendez_vous(models.Model):
 
     def __str__(self):
         return f"Rendez-vous pour {self.patient.nom} le {self.date} à {self.heure}"
+    
+
+
+
     
